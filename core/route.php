@@ -1,6 +1,12 @@
 <?php
 $uri = $_SERVER['REQUEST_URI'];
 $uri = trim($uri, '/');
+
+// remove query/GET string
+if(strpos($uri, '?') !== false){
+    $uri = substr($uri, 0, strpos($uri, '?'));
+}
+
 $uriParts = explode('/', $uri);
 
 include 'controllers/Posts.php';
@@ -39,6 +45,6 @@ switch($uriParts[0]){
         break;
         
     default:
-        
+        die('404');
         
 }

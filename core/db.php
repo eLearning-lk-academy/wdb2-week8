@@ -66,6 +66,15 @@ class DB {
         }
     }
 
+    public function count($sql){
+        $result = $this->conn->query($sql);
+        if ($result === TRUE) {
+            return true;
+        } else {
+            return $result->num_rows;
+        }
+    }
+
     public function __destruct(){
         $this->conn->close();
     }

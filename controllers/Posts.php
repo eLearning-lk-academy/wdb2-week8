@@ -11,7 +11,16 @@ class Posts {
     
 
     public function index(){
-        $posts = $this->postModel->getAllPosts();
+
+        $perPage = 5;
+        $page = isset($_GET['page']) ? $_GET['page'] : 1;
+        $offset = ($page - 1) * $perPage;
+        $limit = $perPage;
+        $totalPosts = $this->postModel->getAllPostsCount();
+        $totalPages = ceil($totalPosts / $perPage);
+
+        $posts = $this->postModel->getAllPosts($offset, $limit);
+
         include 'views/posts/index-view.php';
         exit;
     }

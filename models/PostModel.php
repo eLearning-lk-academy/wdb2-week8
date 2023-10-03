@@ -8,9 +8,14 @@ class PostModel{
         $this->db = new DB();
     }
 
-    public function getAllPosts(){
-        $sql = "SELECT * FROM posts";
+    public function getAllPosts($offset = 0, $limit = 10){
+        $sql = "SELECT * FROM posts ORDER BY id ASC LIMIT {$offset}, {$limit}";
         return $this->db->query($sql);
+    }
+
+    public function getAllPostsCount(){
+        $sql = "SELECT * FROM posts";
+        return $this->db->count($sql);
     }
 
     public function addPost($data){

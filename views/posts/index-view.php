@@ -16,6 +16,17 @@
                 <hr>
             </div>
         <?php endforeach; ?>
+        <div class="pagination float-right ">
+            <?php if($page > 1): ?>
+                <a class="me-2" href="/posts?page=<?= $page - 1 ?>">Previous</a>
+            <?php endif; ?>
+            <?php for($i = 1; $i <= $totalPages; $i++): ?>
+                <a class="me-2" href="/posts?page=<?= $i ?>"><?= $i ?> </a> 
+            <?php endfor; ?>
+            <?php if($page < $totalPages): ?>
+                <a class="me-2" href="/posts?page=<?= $page + 1 ?>">Next</a>
+            <?php endif; ?>
+        </div>
     </div>
 </body>
 </html>
